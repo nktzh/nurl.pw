@@ -1,0 +1,15 @@
+[project]
+name = "nurl-backend"
+version = "0.1.0"
+description = "Nurl API: fast file sharing without registration"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.20.0",
+    "argon2-cffi>=25.1.0",
+    "asyncpg>=0.31.0",
+    "fastapi>=0.141.1",
+    "pydantic-settings>=2.15.0",
+    "sqlalchemy[asyncio]>=2.0.54",
+    "uvicorn[standard]>=0.53.0",
+    "zipstream-ng>=1.9.3",
+]

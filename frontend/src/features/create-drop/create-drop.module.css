@@ -1,0 +1,574 @@
+.layout {
+  width: min(960px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+@media (max-width: 820px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dropzone {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 520px) {
+  .layout,
+  .columns {
+    gap: 12px;
+  }
+}
+
+/* ---------- Dropzone ---------- */
+.dropzone {
+  width: 100%;
+  min-height: 200px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition:
+    border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease),
+    min-height 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .dropzone:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+}
+
+.dropzone:active:not(:disabled),
+.dragging {
+  border-color: var(--accent);
+}
+
+.dragging {
+  background: var(--accent-soft);
+}
+
+.dropzone:disabled {
+  opacity: 0.6;
+}
+
+.dropzoneCompact {
+  min-height: 84px;
+  flex-direction: row;
+  gap: 14px;
+  padding: 20px 24px;
+  text-align: left;
+}
+
+@media (max-width: 520px) {
+  .dropzone {
+    min-height: 136px;
+    padding: 24px 16px;
+  }
+  .dropzoneCompact {
+    min-height: 72px;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+}
+
+.dropIcon {
+  width: calc(var(--badge) + 4px);
+  height: calc(var(--badge) + 4px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  flex: none;
+  transition: transform 0.25s var(--ease);
+}
+
+.dropIcon svg {
+  width: var(--icon-xl);
+  height: var(--icon-xl);
+}
+
+.dragging .dropIcon {
+  transform: translateY(-3px) scale(1.06);
+}
+
+.dropTitle {
+  font-weight: 600;
+  font-size: var(--font-md);
+  text-wrap: balance;
+}
+
+/* Drag and drop is meaningless on touch screens */
+.touchText {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .pointerText {
+    display: none;
+  }
+  .touchText {
+    display: inline;
+  }
+}
+
+/* ---------- Panels ---------- */
+.panel {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .panel {
+    padding: var(--card-pad);
+  }
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
+}
+
+.panelTitle {
+  font-size: var(--font-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.linkButton {
+  min-height: 32px;
+  margin: -4px -8px;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+@media (hover: hover) {
+  .linkButton:hover:not(:disabled) {
+    color: var(--danger);
+  }
+}
+
+.linkButton:active:not(:disabled) {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* ---------- Size meter ---------- */
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.meterRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.meterValue {
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.meterTrack {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--surface-strong);
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 0.3s var(--ease);
+}
+
+.meterOver .meterValue {
+  color: var(--danger);
+}
+
+.meterOver .meterFill {
+  background: var(--danger);
+}
+
+/* ---------- File table ---------- */
+.empty {
+  flex: 1;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+/* Fills the panel height set by the settings column without contributing to it */
+.tableWrap {
+  flex: 1;
+  min-height: 220px;
+  position: relative;
+  margin: 0 -8px;
+}
+
+.tableScroll {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Single column: no neighbour to match, so size by content with a cap.
+   Declared after the base rules so it wins the cascade. */
+@media (max-width: 820px) {
+  .empty {
+    min-height: 120px;
+  }
+  .tableWrap {
+    min-height: 0;
+  }
+  .tableScroll {
+    position: static;
+    max-height: 360px;
+    max-height: min(360px, 50dvh);
+  }
+}
+
+@media (max-width: 520px) {
+  .tableWrap {
+    margin: 0 -4px;
+  }
+  .sizeCol {
+    width: 72px;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-sm);
+  table-layout: fixed;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  text-align: left;
+  font-size: var(--font-xs);
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0 8px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.sizeCol {
+  width: 84px;
+  text-align: right !important;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.actionCol,
+.table th:last-child {
+  width: 40px;
+}
+
+.fileName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.fileName > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileIcon {
+  flex: none;
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+  color: var(--accent);
+}
+
+.removeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+}
+
+.removeBtn svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+@media (hover: hover) {
+  .removeBtn:hover:not(:disabled) {
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+}
+
+.removeBtn:active:not(:disabled) {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* Finger-sized rows and delete targets */
+@media (pointer: coarse) {
+  .table td {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .removeBtn {
+    width: 40px;
+    height: 40px;
+    margin-right: -6px;
+  }
+  .actionCol,
+  .table th:last-child {
+    width: 44px;
+  }
+}
+
+/* ---------- Settings ---------- */
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accessHint {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  padding: 0 4px;
+}
+
+.passwords {
+  display: grid;
+  gap: 12px;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.terms {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  padding: 0 4px;
+  text-align: center;
+}
+
+.terms a {
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .terms a:hover {
+    text-decoration: underline;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 380px) {
+  .actions {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Retention slider ---------- */
+.slider {
+  --fill: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--t));
+  --thumb: 30px;
+  padding: 8px 0 0;
+}
+
+.range {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  margin: 0;
+  height: var(--thumb);
+  background: transparent;
+  cursor: pointer;
+}
+
+.range:disabled {
+  cursor: not-allowed;
+}
+
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--surface-strong) var(--fill));
+}
+
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--surface-strong) var(--fill));
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--thumb);
+  height: var(--thumb);
+  margin-top: calc((6px - var(--thumb)) / 2);
+  border-radius: 8px;
+  background: var(--accent) padding-box;
+  border: 3px solid transparent;
+  transform: rotate(45deg);
+  transition:
+    transform 0.15s var(--ease),
+    border-color 0.15s var(--ease),
+    box-shadow 0.15s var(--ease);
+}
+
+.range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--accent) padding-box;
+  border: 3px solid transparent;
+  transform: rotate(45deg);
+}
+
+.range:active::-webkit-slider-thumb {
+  transform: rotate(45deg) scale(1.12);
+}
+
+.range:focus-visible {
+  outline: none;
+}
+
+/* Ring sits flush: the transparent border is tinted, the shadow extends it */
+.range:focus-visible:not(:active)::-webkit-slider-thumb {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.range:focus-visible:not(:active)::-moz-range-thumb {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.stops {
+  position: relative;
+  height: var(--tap-min);
+  margin-top: 6px;
+}
+
+.stop {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  height: 100%;
+  padding: 2px 4px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.stop[data-edge="start"] {
+  transform: none;
+  align-items: flex-start;
+  padding-left: 0;
+}
+
+.stop[data-edge="end"] {
+  transform: translateX(-100%);
+  align-items: flex-end;
+  padding-right: 0;
+}
+
+@media (hover: hover) {
+  .stop:hover:not(:disabled) {
+    color: var(--text);
+  }
+}
+
+.stopLabel {
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.stopLimit {
+  font-size: var(--font-xs);
+}
+
+.stopActive {
+  color: var(--accent) !important;
+}

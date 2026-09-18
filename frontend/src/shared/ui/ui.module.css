@@ -1,0 +1,478 @@
+/* ---------- Card ---------- */
+.card {
+  min-width: 0;
+}
+
+/* ---------- Button ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: var(--control-h);
+  padding: 0 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: var(--font-md);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    background-color 0.18s var(--ease),
+    color 0.18s var(--ease),
+    transform 0.12s var(--ease),
+    opacity 0.18s;
+}
+
+.button svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  opacity: 0.45;
+}
+
+.primary {
+  background: var(--accent);
+  color: #fff;
+}
+@media (hover: hover) {
+  .primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+  }
+  .secondary:hover:not(:disabled) {
+    background: #e5dfd6;
+  }
+  .danger:hover:not(:disabled) {
+    background: var(--danger);
+    color: #fff;
+  }
+}
+
+/* Touch: pressed state instead of sticky hover */
+.primary:active:not(:disabled) {
+  background: var(--accent-hover);
+}
+.secondary:active:not(:disabled) {
+  background: #e5dfd6;
+}
+.danger:active:not(:disabled) {
+  background: var(--danger);
+  color: #fff;
+}
+
+.secondary {
+  background: var(--surface-strong);
+  color: var(--text);
+}
+
+.danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.small {
+  height: var(--tap-min);
+  padding: 0 18px;
+  font-size: var(--font-sm);
+}
+
+.small svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+.block {
+  width: 100%;
+}
+
+.progress {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.18);
+  transition: width 0.2s linear;
+}
+
+/* ---------- Field ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: var(--control-h);
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .input:hover {
+    border-color: var(--border-strong);
+  }
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.input[readonly] {
+  background: var(--surface-soft);
+  text-overflow: ellipsis;
+}
+
+.input:disabled {
+  opacity: 0.6;
+  -webkit-text-fill-color: currentColor;
+}
+
+.withAddon {
+  padding-right: 56px;
+}
+
+.addon svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.addon {
+  position: absolute;
+  right: 4px;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+@media (hover: hover) {
+  .addon:hover {
+    background: var(--surface);
+    color: var(--text);
+  }
+}
+
+.addon:active {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.hint {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+
+/* ---------- Segmented ---------- */
+.segmented {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  padding: 4px;
+  gap: 4px;
+  background: var(--surface-strong);
+  border-radius: var(--radius-pill);
+}
+
+.segment {
+  min-width: 0;
+  height: var(--tap-min);
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition:
+    background-color 0.18s var(--ease),
+    color 0.18s var(--ease),
+    box-shadow 0.18s;
+}
+
+.segment svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+@media (max-width: 520px) {
+  .segment {
+    font-size: var(--font-xs);
+    white-space: nowrap;
+  }
+  .segment svg {
+    display: none;
+  }
+}
+
+@media (hover: hover) {
+  .segment:hover {
+    color: var(--text);
+  }
+}
+
+.segment[aria-checked="true"] {
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(30, 25, 25, 0.1);
+}
+
+/* ---------- Code boxes ---------- */
+.code {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.codeBox {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+  padding: 0;
+  aspect-ratio: 1 / 1.1;
+  max-height: 64px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  text-align: center;
+  font-size: var(--font-xl);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  display: grid;
+  place-items: center;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+@media (max-width: 380px) {
+  .code {
+    gap: 6px;
+  }
+  .codeBox {
+    border-radius: 12px;
+  }
+}
+
+input.codeBox:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.codeBoxFilled {
+  color: var(--accent);
+  border-color: rgba(0, 97, 254, 0.2);
+  background: var(--accent-soft);
+}
+
+/* ---------- Nav bar ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  max-width: 100%;
+}
+
+.navLogo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 12px 0 14px;
+  border-radius: var(--radius-pill);
+}
+
+.navLogo img {
+  display: block;
+}
+
+.navTabs {
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+}
+
+.navTab {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition:
+    background-color 0.18s,
+    color 0.18s;
+}
+
+.navTab[aria-current="page"] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+@media (hover: hover) {
+  .navTab:hover {
+    color: var(--text);
+    background: var(--surface-strong);
+  }
+}
+
+.navTab svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+/* Phones: floating tab bar pinned above the home indicator,
+   icon stacked over label like a native tab bar. */
+@media (max-width: 520px) {
+  .nav {
+    position: sticky;
+    bottom: calc(12px + var(--safe-bottom));
+    z-index: 10;
+    margin-top: auto;
+    gap: 4px;
+    padding: 4px;
+    box-shadow: var(--shadow-card);
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    backdrop-filter: saturate(180%) blur(16px);
+    align-self: stretch;
+  }
+  .navTabs {
+    flex: 1;
+  }
+  .navTab {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 52px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 4px;
+    font-size: var(--font-xs);
+    line-height: 1.2;
+  }
+  .navTab svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+  .navLogo {
+    height: 52px;
+    padding: 0 8px 0 12px;
+  }
+}
+
+.navTab:not([aria-current="page"]):active {
+  background: var(--surface-strong);
+}
+
+/* ---------- Page shell ---------- */
+.shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: calc(28px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom))
+    calc(16px + var(--safe-left));
+  width: 100%;
+}
+
+/* Phones: content starts at the top, the tab bar sits at the bottom */
+@media (max-width: 520px) {
+  .shell {
+    justify-content: flex-start;
+    gap: 16px;
+    padding: calc(12px + var(--safe-top)) calc(12px + var(--safe-right)) calc(12px + var(--safe-bottom))
+      calc(12px + var(--safe-left));
+  }
+}
+
+.alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.alert svg {
+  flex: none;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  margin-top: 1px;
+}
+
+.info {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.enter {
+  animation: enter 0.35s var(--ease) both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

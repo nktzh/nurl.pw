@@ -1,0 +1,59 @@
+.card {
+  width: min(460px, 100%);
+}
+
+.inner {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: calc(var(--card-pad) + 4px) var(--card-pad) var(--card-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.icon {
+  width: var(--badge);
+  height: var(--badge);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.icon svg {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+}
+
+.title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  text-wrap: balance;
+}
+
+.divider {
+  text-align: center;
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+}
+
+.nameField input {
+  text-align: center;
+}

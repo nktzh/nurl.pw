@@ -1,0 +1,228 @@
+.card {
+  width: min(560px, 100%);
+}
+
+.inner {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headText {
+  min-width: 0;
+}
+
+.folderIcon {
+  width: var(--badge);
+  height: var(--badge);
+  flex: none;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.folderIcon svg {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+}
+
+.folderMuted {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 500;
+  font-size: var(--font-xs);
+}
+
+.files {
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  max-height: 340px;
+  max-height: min(340px, 50dvh);
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: var(--font-sm);
+}
+
+.file + .file {
+  border-top: 1px solid var(--border);
+}
+
+.fileIcon {
+  flex: none;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--accent);
+}
+
+.fileName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileSize {
+  flex: none;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-sm);
+}
+
+.fileDownload {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.fileDownload svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+@media (hover: hover) {
+  .fileDownload:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+}
+
+.fileDownload:active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+@media (pointer: coarse) {
+  .file {
+    padding: 6px 6px 6px 12px;
+  }
+  .fileDownload {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+  .file {
+    gap: 8px;
+  }
+}
+
+.expires {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.expires svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+.expires strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 16px 0;
+}
+
+.muted {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  max-width: 360px;
+}
+
+.skelHead,
+.skelRow,
+.skelButton {
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--surface) 0%, var(--surface-soft) 50%, var(--surface) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+.skelHead {
+  height: 48px;
+  width: 60%;
+}
+
+.skelRow {
+  height: 40px;
+}
+
+.skelButton {
+  height: var(--control-h);
+  border-radius: var(--radius-pill);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

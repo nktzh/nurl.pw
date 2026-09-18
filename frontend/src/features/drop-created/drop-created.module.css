@@ -1,0 +1,179 @@
+.layout {
+  width: min(860px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .layout {
+    gap: 12px;
+  }
+}
+
+.main {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .main {
+    gap: 16px;
+  }
+}
+
+.head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.badge {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.badge svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  margin-top: 2px;
+}
+
+.meta {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.meta strong {
+  color: var(--text);
+}
+
+.share {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shareRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* Phones: copy on its own row, messengers side by side */
+@media (max-width: 520px) {
+  .shareRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .shareRow > :first-child {
+    grid-column: 1 / -1;
+  }
+  .shareRow > * {
+    padding: 0 12px;
+  }
+}
+
+.expires {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.expires svg {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+.expires strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qr {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* A QR code on the phone itself matters less; keep it compact */
+@media (max-width: 760px) {
+  .qrCode {
+    max-width: 200px;
+  }
+}
+
+.qrCode {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  max-width: 260px;
+}
+
+.qrHint {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+}
+
+.confirm {
+  background: var(--danger-soft);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: var(--font-sm);
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.confirmRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}

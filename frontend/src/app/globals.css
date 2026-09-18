@@ -1,0 +1,153 @@
+:root {
+  /* Palette */
+  --page: #f3f3f4;
+  --bg: #ffffff;
+  --surface: #f7f5f2;
+  --surface-strong: #eee9e2;
+  --surface-soft: #faf9f7;
+  --text: #1e1919;
+  --text-secondary: #524a3e;
+  --text-muted: #8e8b87;
+  --accent: #0061fe;
+  --accent-hover: #0052d9;
+  --accent-soft: rgba(0, 97, 254, 0.08);
+  --danger: #cd2f7b;
+  --danger-soft: rgba(205, 47, 123, 0.1);
+  --border: rgba(30, 25, 25, 0.08);
+  --border-strong: rgba(30, 25, 25, 0.16);
+
+  /* Type scale: use only these sizes */
+  --font-xs: 12px; /* captions, table headers, tags, fine print */
+  --font-sm: 14px; /* secondary text, subtitles, labels, tabs */
+  --font-md: 16px; /* body, buttons, inputs, block titles */
+  --font-lg: 18px; /* lead paragraph, emphasized numbers */
+  --font-xl: 24px; /* page titles, code boxes */
+
+  /* Icon scale: glyph sizes, applied from CSS so they can adapt */
+  --icon-xs: 16px; /* inline with text, table rows, tabs */
+  --icon-sm: 18px; /* buttons, alerts, input addons */
+  --icon-md: 20px; /* feature list, mobile tab bar */
+  --icon-lg: 22px; /* header badges */
+  --icon-xl: 24px; /* dropzone */
+
+  /* Shape */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --control-h: 52px;
+  --tap-min: 44px; /* smallest touch target */
+  --card-pad: 24px;
+  --card-pad-lg: 28px;
+  --badge: 48px;
+
+  /* Safe areas (notch, home indicator); zero on desktop */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  --shadow-card: 0 1px 2px rgba(30, 25, 25, 0.04), 0 12px 40px rgba(30, 25, 25, 0.06);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* Phones: tighter chrome, slightly smaller headings.
+   --font-md stays 16px so iOS Safari never zooms into focused inputs. */
+@media (max-width: 520px) {
+  :root {
+    --font-lg: 17px;
+    --font-xl: 22px;
+    --icon-lg: 20px;
+    --icon-xl: 22px;
+    --radius-lg: 20px;
+    --control-h: 48px;
+    --card-pad: 16px;
+    --card-pad-lg: 20px;
+    --badge: 44px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  background: var(--page);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-onest), system-ui, sans-serif;
+  font-size: var(--font-md);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+
+/* No double-tap zoom delay on controls */
+a,
+button,
+input,
+label {
+  touch-action: manipulation;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(0, 97, 254, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
